@@ -1,6 +1,6 @@
 <?php
 
-require_once './envvars.php';
+require_once dirname(__FILE__) . '/envvars.php';
 require_once 'libraries/Doctrine.php';
 
 $doctrine = new Doctrine;

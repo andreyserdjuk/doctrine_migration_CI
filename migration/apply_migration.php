@@ -8,7 +8,7 @@ $doctrine = new \Doctrine;
 $migrFiles = scandir(dirname(__FILE__) . '/dumps', SCANDIR_SORT_DESCENDING);
 
 if (!empty($migrFiles)) {
-	// remove directory dots:
+	// remove directory dots
 	$migrFiles = array_slice($migrFiles, 0, -2);
 
 	// get current db_version
@@ -22,7 +22,7 @@ if (!empty($migrFiles)) {
 		$doctrine->em->persist($dbRunning);
 	}
 
-	// all applications should to know, that schema update running
+	// all applications should know, that schema update is running
 	$dbRunning->setValue('1');
 	$doctrine->em->flush();
 
@@ -33,7 +33,7 @@ if (!empty($migrFiles)) {
 		$dbVersion->setType('string');
 		$doctrine->em->persist($dbVersion);
 	} else {
-		// get migrations order for apply
+		// get migrations order to apply
 		array_splice($migrFiles, array_search($dbVersion->getValue() . '.php', $migrFiles));
 	}
 
